@@ -74,11 +74,11 @@ func check_commission(number string) uint64 {
 	// при преобразовании дают неверный результат, например 0.29
 	// (0.29 * 100 = 28.999999999999996, что при приведении к uint64 дает 28, а не 29)
 	tempValue = math.Round(tempValue)
-	fmt.Printf("value after math round: %f\n", tempValue)
+
 	// Преобразуем значение в нужный тип данных
 	result := uint64(tempValue)
+
 	// Возвращаем корректное значение
-	fmt.Println("result is: \n", result)
 	return result
 }
 
