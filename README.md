@@ -1,4 +1,8 @@
-<img align="right" width="100%" src="./images/i.jpg">
+![GitHub top language](https://img.shields.io/github/languages/top/sanyarise/checkComission)
+![GitHub repo size](https://img.shields.io/github/repo-size/sanyarise/checkComission)
+![GitHub code size in bytes](https://img.shields.io/github/languages/code-size/sanyarise/checkComission)
+
+<img align="right" width="50%" src="./images/i.jpg">
 # checkComission
 
 Описание:
