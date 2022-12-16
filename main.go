@@ -101,3 +101,50 @@ func cleanInvisibleSymbols(s string) string {
 }
 
 // Ввиду ограничений формы входящее значение от пользователя всегда в string
+// Пеменная input будет эмулировать входящее значение
+func main() {
+	// Проверяем маленькое значение
+	input := "0.01"
+	fmt.Println("Первое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+   
+	// Проверяем большое значение
+	input = "99.99"
+	fmt.Println("\nВторое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+   
+	// Проверяем если ввели не число
+	input = "неЧисло"
+	fmt.Println("\nСтроковое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+
+	// Проверяем если ввели отрицательное число
+	input = "-2"
+	fmt.Println("\nСтроковое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+
+	// Проверяем если ввели число больше 99.99
+	input = "100"
+	fmt.Println("\nСтроковое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+
+	// Проверяем число с запятой вместо точки
+	input = "0,5"
+	fmt.Println("\nСтроковое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+
+	// Проверяем если ввели число с большим количеством символов после запятой
+	input = "99.999"
+	fmt.Println("\nСтроковое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+
+	// Проверяем если ввели число с пробелами и запятой
+	input = " 0,29 "
+	fmt.Println("\nСтроковое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+
+	// Проверяем если ввели число с пробелами и запятой
+	input = " 0,29 "
+	fmt.Println("\nСтроковое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+   }
