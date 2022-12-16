@@ -3,13 +3,31 @@ package main
 // Импортируем библиотеки вывода и конвертации
 import (
 	"fmt"
+	"math"
 	"strconv"
+	"strings"
+	"unicode"
 )
 
 // Функция проверки комиссии
 func check_commission(number string) uint64 {
+	// Удаляем пробелы из строки
+	numberWithoutSpaces := cleanSpaces(number)
+
+	// Удаляем непечатаемые символы из строки
+	number = cleanInvisibleSymbols(numberWithoutSpaces)
+
+	// Проверяем, что строка не пустая
+	if number == "" {
+		// Если пустая, скажем об этом
+		fmt.Println("Введено пустое значение")
+		// И выйдем из функции
+		return 0
+	}
+
 	// Преобразуем входящую строку в слайс рун
 	runesNumber := []rune(number)
+
 	// Итерируемся по слайсу рун
 	for index, val := range runesNumber {
 		// Если руна равна запятой (вместо точки часто используется запятая)
@@ -51,42 +69,35 @@ func check_commission(number string) uint64 {
 	}
 	// Умножим значение на 100, тем самым сдвинем запятую
 	tempValue = tempValue * 100
+
+	// Округляем полученное значение, т.к. некоторые числа
+	// при преобразовании дают неверный результат, например 0.29
+	// (0.29 * 100 = 28.999999999999996, что при приведении к uint64 дает 28, а не 29)
+	tempValue = math.Round(tempValue)
+	fmt.Printf("value after math round: %f\n", tempValue)
 	// Преобразуем значение в нужный тип данных
 	result := uint64(tempValue)
 	// Возвращаем корректное значение
+	fmt.Println("result is: \n", result)
 	return result
 }
 
+// Удаляем все пробелы из строки
+func cleanSpaces(s string) string {
+	return strings.Map(func(r rune) rune {
+		if unicode.IsSpace(r) {
+			return -1
+		}
+		return r
+	}, s)
+}
+
+// Очищаем строку от непечатаемых символов
+func cleanInvisibleSymbols(s string) string {
+	s = strings.TrimFunc(s, func(r rune) bool {
+		return !unicode.IsGraphic(r)
+	})
+	return s
+}
+
 // Ввиду ограничений формы входящее значение от пользователя всегда в string
-// Пеменная input будет эмулировать входящее значение
-func main() {
-    // Проверяем маленькое значение
-    input := "0.01"
-    fmt.Println("Первое значение:", input)
-    fmt.Println("Преобразованное значение:", check_commission(input))
-   
-    // Проверяем большое значение
-    input = "99.99"
-    fmt.Println("\nВторое значение:", input)
-    fmt.Println("Преобразованное значение:", check_commission(input))
-   
-    // Проверяем если ввели не число
-    input = "неЧисло"
-    fmt.Println("\nСтроковое значение:", input)
-    fmt.Println("Преобразованное значение:", check_commission(input))
-
-    // Проверяем, если ввели число меньше 0
-    input = "-2"
-    fmt.Println("\nОтрицательное значение:", input)
-    fmt.Println("Преобразованное значение:", check_commission(input))
-
-    // Проверяем, если ввели число больше 99.99
-    input = "1000"
-    fmt.Println("\nСлишком большое значение:", input)
-    fmt.Println("Преобразованное значение:", check_commission(input))
-
-    // Проверяем, если ввели корректное число с запятой вместо точки
-    input = "99,99"
-    fmt.Println("\nЗначение с запятой вместо точки:", input)
-    fmt.Println("Преобразованное значение:", check_commission(input))
-   }
