@@ -41,6 +41,7 @@ var testValues = []struct {
 	{"55.", 5500},
 	{"28.2.3", 0},
 	{"53.2.", 0},
+	{"NaN", 0},
 }
 
 func TestCheckComission(t *testing.T) {

@@ -25,6 +25,11 @@ func check_commission(number string) uint64 {
 		return 0
 	}
 
+	if number == "NaN" {
+		fmt.Println("Недопустимое значение")
+		return 0
+	}
+
 	// Преобразуем входящую строку в слайс рун
 	runesNumber := []rune(number)
 
@@ -145,6 +150,11 @@ func main() {
 
 	// Проверяем если ввели число с пробелами и запятой
 	input = " 0,29 "
+	fmt.Println("\nСтроковое значение:", input)
+	fmt.Println("Преобразованное значение:", check_commission(input))
+
+	// Проверяем если ввели число с пробелами и непечатаемыми символами
+	input = "\n\t \n1\n\t2.\t33   "
 	fmt.Println("\nСтроковое значение:", input)
 	fmt.Println("Преобразованное значение:", check_commission(input))
    }
