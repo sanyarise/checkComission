@@ -60,18 +60,33 @@ func check_commission(number string) uint64 {
 // Ввиду ограничений формы входящее значение от пользователя всегда в string
 // Пеменная input будет эмулировать входящее значение
 func main() {
-	// Проверяем маленькое значение
-	input := "0.01"
-	fmt.Println("Первое значение:", input)
-	fmt.Println("Преобразованное значение:", check_commission(input))
+    // Проверяем маленькое значение
+    input := "0.01"
+    fmt.Println("Первое значение:", input)
+    fmt.Println("Преобразованное значение:", check_commission(input))
+   
+    // Проверяем большое значение
+    input = "99.99"
+    fmt.Println("\nВторое значение:", input)
+    fmt.Println("Преобразованное значение:", check_commission(input))
+   
+    // Проверяем если ввели не число
+    input = "неЧисло"
+    fmt.Println("\nСтроковое значение:", input)
+    fmt.Println("Преобразованное значение:", check_commission(input))
 
-	// Проверяем большое значение
-	input = "99.99"
-	fmt.Println("\nВторое значение:", input)
-	fmt.Println("Преобразованное значение:", check_commission(input))
+    // Проверяем, если ввели число меньше 0
+    input = "-2"
+    fmt.Println("\nОтрицательное значение:", input)
+    fmt.Println("Преобразованное значение:", check_commission(input))
 
-	// Проверяем если ввели не число
-	input = "неЧисло"
-	fmt.Println("\nСтроковое значение:", input)
-	fmt.Println("Преобразованное значение:", check_commission(input))
-}
+    // Проверяем, если ввели число больше 99.99
+    input = "1000"
+    fmt.Println("\nСлишком большое значение:", input)
+    fmt.Println("Преобразованное значение:", check_commission(input))
+
+    // Проверяем, если ввели корректное число с запятой вместо точки
+    input = "99,99"
+    fmt.Println("\nЗначение с запятой вместо точки:", input)
+    fmt.Println("Преобразованное значение:", check_commission(input))
+   }
